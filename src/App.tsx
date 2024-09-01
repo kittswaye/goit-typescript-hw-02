@@ -1,25 +1,25 @@
 import { useState } from 'react';
-import { getImagesByTopic } from './images-api.js';
+import { getImagesByTopic } from './images-api';
 import SearchBar from './components/SearchBar/SearchBar';
 import ImageGallery from './components/ImageGallery/ImageGallery';
 import LoadMoreBtn from './components/LoadMoreBtn/LoadMoreBtn';
-import ErrorMessage from './components/ErrorMessage/ErrorMessage.jsx';
-import Loader from './components/Loader/Loader.jsx';
-import ImageModal from './components/ImageModal/ImageModal.jsx';
+import ErrorMessage from './components/ErrorMessage/ErrorMessage';
+import Loader from './components/Loader/Loader';
+import ImageModal from './components/ImageModal/ImageModal';
 import './App.css';
+import { Image } from "./App.types";
+
 
 function App() {
+  const [images, setImages] = useState<Image[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<boolean>(false);
+  const [page, setPage] = useState<number>(1);
+  const [topic, setTopic] = useState<string>('');
+  const [modalIsOpen, setIsOpen] = useState<boolean>(false);
+  const [modalPicture, setModalPicture] = useState<Image | undefined>(undefined);
 
-  const [images, setImages] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
-  const [page, setPage] = useState(1);
-  const [topic, setTopic] = useState('');
-  const [modalIsOpen, setIsOpen] = useState(false);
-  const [modalPicture, setModalPicture] = useState();
-
-
-  const handleSearch = async (searchTopic, searchPage) => {
+  const handleSearch = async (searchTopic: string, searchPage: number) => {
     try {
       setTopic(searchTopic);
       setPage(searchPage);
@@ -44,7 +44,7 @@ function App() {
     }
   }
 
-  const openModal = (picture) => {
+  const openModal = (picture: Image) => {
     setIsOpen(true);
     setModalPicture(picture);
   }
@@ -69,4 +69,4 @@ function App() {
   )
 }
 
-export default App
+export default App;
