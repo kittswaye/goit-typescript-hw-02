@@ -17,7 +17,7 @@ function App() {
   const [page, setPage] = useState<number>(1);
   const [topic, setTopic] = useState<string>('');
   const [modalIsOpen, setIsOpen] = useState<boolean>(false);
-  const [modalPicture, setModalPicture] = useState<Image | undefined>(undefined);
+  const [modalPicture, setModalPicture] = useState<string>('');
 
   const handleSearch = async (searchTopic: string, searchPage: number) => {
     try {
@@ -44,7 +44,7 @@ function App() {
     }
   }
 
-  const openModal = (picture: Image) => {
+  const openModal = (picture: string) => {
     setIsOpen(true);
     setModalPicture(picture);
   }

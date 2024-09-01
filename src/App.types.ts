@@ -4,5 +4,5 @@ export interface Image {
     small: string;
     regular: string;
   };
-  description: string | null;
+  description: string;
 }
